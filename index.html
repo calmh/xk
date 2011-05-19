@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+        <head>
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+                <link rel="apple-touch-icon" href="icon-114.png"/>
+                <script type="text/javascript" src="jquery.js"></script>
+                <script type="text/javascript" src="date.js"></script>
+                <script type="text/javascript" src="app.js"></script>
+                <script>
+                        $(document).ready(function(){
+                                /*document.addEventListener('touchmove', function(e){ e.preventDefault(); })
+                                document.addEventListener('touchstart', function(e){ e.preventDefault(); })*/
+                                main();
+                        });
+                </script>
+                <style>
+                        html {
+                                width: 100%;
+                                height: 100%;
+                        }
+                        body {
+                                background: #000;
+                                color: #eff;
+                                text-align: center;
+                                font-family: Helvetica;
+                                margin: 0;
+                                padding: 0;
+                                width: 100%;
+                                height: 100%;
+                                -webkit-text-size-adjust:none;
+                        }
+
+                        .fast {
+                                color: #5f5;
+                        }
+
+                        .slow {
+                                color: #f55;
+                        }
+
+                        #current {
+                                color: #abb;
+                        }
+
+                        .choice {
+                                font-size: 40px;
+                                background-color: #222;
+                                border: 2px solid #333;
+                                margin: 10px;
+                                padding: 10px;
+                        }
+
+                        .failed {
+                                background-color: #c44;
+                                color: #300;
+                        }
+
+                        .unknown {
+                                background-color: #ccc;
+                                color: #333;
+                        }
+
+                        .ok {
+                                color: #4c4;
+                                background-color: #030;
+                        }
+
+                        @media screen and (max-width: 320px) {
+                                .time {
+                                        text-align: center;
+                                        vertical-align: middle;
+                                        width: 100%;
+                                        height: 50%;
+                                        font-size: 150px;
+                                }
+                                #progress {
+                                        display: none;
+                                }
+                        }
+
+                        @media screen and (min-width: 321px) {
+                                .time {
+                                        clear: none;
+                                        width: 50%;
+                                        height: 95%;
+                                        font-size: 200px;
+                                }
+                                #average {
+                                        float: left;
+                                        text-align: left;
+                                }
+                                #current {
+                                        float: right;
+                                        text-align: right;
+                                }
+                                #progress {
+                                        display: block;
+                                        height: 3%;
+                                        background: #abb;
+                                }
+                        }
+                </style>
+        </head>
+        <body>
+                <div id='config'>
+                        <div id='gps' class='unknown'>GPS</div>
+                        <div class='choice' data-length=5000>5K</div>
+                        <div class='choice' data-length=10000>10K</div>
+                        <div class='choice' data-length=21097>21K</div>
+                        <div class='choice' data-length=42195>42K</div>
+                </div>
+                <div id='main' style='display: none'>
+                        <div class='time' id='average'>-</div>
+                        <div class='time' id='current'>-</div>
+                        <div id='progress'></div>
+                </div>
+        </body>
+</html>
