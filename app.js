@@ -20,8 +20,8 @@ function Stat(distance) {
                 this.elapsed = (location.timestamp - this.startTime()) / 1000;
                 this.averageSpeed = this.distance / this.elapsed;
 
-                var lastTen = this.locations.slice(-10);
-                var lastTenDist = distanceOverArray(lastTen);
+                var lastFew = this.locations.slice(-20);
+                var lastFewDist = distanceOverArray(lastTen);
                 this.currentSpeed = lastTenDist / (location.timestamp - lastTen[0].timestamp) * 1000;
         };
 
@@ -166,6 +166,7 @@ function locationSuccess(location) {
         } else {
                 current.html('&#8734;'); // Infinity
         }
+
         current.removeClass('slow');
         current.removeClass('fast');
         if (curMinutes < avgMinutes * 0.9) {
