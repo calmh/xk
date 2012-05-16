@@ -21,8 +21,8 @@ function Stat(distance) {
                 this.averageSpeed = this.distance / this.elapsed;
 
                 var lastFew = this.locations.slice(-20);
-                var lastFewDist = distanceOverArray(lastTen);
-                this.currentSpeed = lastTenDist / (location.timestamp - lastTen[0].timestamp) * 1000;
+                var lastFewDist = distanceOverArray(lastFew);
+                this.currentSpeed = lastFewDist / (location.timestamp - lastFew[0].timestamp) * 1000;
         };
 
         this.startTime = function() {
@@ -132,10 +132,10 @@ function formatLon(dec) {
 }
 
 function locationSuccessFake(location) {
-        speed += .01;
+        location.speed += .01;
         location.timestamp += 1000;
-        location.coords.latitude += speed / 1852 / 60;
-        location.coords.longitude += speed / 1852 / 60;
+        location.coords.latitude += location.speed / 1852 / 60;
+        location.coords.longitude += location.speed / 1852 / 60;
         locationSuccess(location);
         setTimeout(function() { locationSuccessFake(location); }, 1000);
 }
@@ -193,10 +193,11 @@ function choiceMade(event) {
 }
 
 function main() {
-        speed = 3;
+    /*
         var coords = { latitude: 55.5, longitude: 13.7 };
-        var location = { timestamp: 1305745043000, coords: coords };
-        // locationSuccessFake(location);
+        var location = { timestamp: 1305745043000, coords: coords, speed: 3.0 };
+        locationSuccessFake(location);
+        */
         $('.choice').bind('click', choiceMade);
         navigator.geolocation.watchPosition(locationSuccess, locationFailure, { frequency: 5000 });
 }
